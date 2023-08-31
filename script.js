@@ -1,5 +1,6 @@
 const cellRef = document.querySelectorAll(".cell");
 const resultSpan = document.getElementById("result");
+const restartButton = document.getElementById("restartButton");
 let xTurn = true;
 
 function checkWinner() {
@@ -59,3 +60,12 @@ function enableButtons() {
 }
 
 window.onload = enableButtons;
+
+restartButton.addEventListener("click", function resetCells() {
+  cellRef.forEach((cell) => {
+    cell.innerText = "";
+    cell.disabled = false;
+  });
+  resultSpan.textContent = "";
+  xTurn = true;
+});

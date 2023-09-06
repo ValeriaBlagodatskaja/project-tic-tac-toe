@@ -9,9 +9,11 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <h1>Tic Tac Toe</h1>
-    <button class="twoPlayersButton">Two players</button>
-    <button class="aiBotButton">AI Bot</button>
+    <h1 class="tic">Tic Tac Toe</h1>
+    <div class="choiceButtons">
+      <button class="twoPlayersButton">2 players</button>
+      <button class="aiBotButton">AI Bot</button>
+    </div>
     <div class="game-info">
       <p id="playerXName"></p>
       <p id="playerOName"></p>
@@ -25,7 +27,9 @@
         <p>Player O:</p>
       </label>
       <input type="text" id="playerO" placeholder="Enter name" required />
-      <button id="startButton">Start</button>
+      <br />
+
+      <button id="startButton" type="submit">Start</button>
     </form>
     <div class="gameBoard" id="gameBoard" style="display: none">
       <button class="cell" id="0"></button>
@@ -38,7 +42,9 @@
       <button class="cell" id="7"></button>
       <button class="cell" id="8"></button>
     </div>
-    <button class="restartButton" id="restartButton">New game</button>
+    <button class="restartButton" id="restartButton" style="display: none">
+      New game
+    </button>
     <span id="result"></span>
   </body>
 </html>

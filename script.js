@@ -51,16 +51,12 @@ function handlePlayerMove(element) {
       gameWon = true;
     }
     if (!gameWon && botActive && !xTurn) {
-      // After the player's move, let the bot make its move
       botMakeMove();
     }
   }
 }
 
 function botMove() {
-  // Implement your bot's logic here, e.g., checking for winning moves or blocking the player
-  // Return the index of the cell where the bot wants to make a move
-  // For simplicity, let's say the bot chooses a random available cell:
   const emptyCells = [...cellRef].filter((cell) => !cell.textContent);
   const randomIndex = Math.floor(Math.random() * emptyCells.length);
   return emptyCells[randomIndex].id;
@@ -131,6 +127,29 @@ cellRef.forEach((element) => {
   });
 });
 
+aiBotButton.addEventListener("click", () => {
+  gameBoard.style.display = "flex";
+  restartButton.style.display = "block";
+  playerXName.style.display = "block";
+  playerOName.style.display = "block";
+  enableButtons();
+  if (botActive) {
+    deactivateBot();
+  } else {
+    activateBot();
+    aiBotButton.style.backgroundColor = "green";
+    twoPlayersButton.style.background = "grey";
+    newGameForm.style.display = "none";
+    playerXName.textContent = "user";
+    playerOName.textContent = "bot";
+  }
+  cellRef.forEach((cell) => {
+    cell.innerText = "";
+    cell.disabled = false;
+  });
+  resultSpan.textContent = "";
+});
+
 function enableButtons() {
   cellRef.forEach((element) => {
     element.disabled = false;
@@ -138,7 +157,6 @@ function enableButtons() {
 }
 
 window.onload = enableButtons;
-
 restartButton.addEventListener("click", function resetCells() {
   console.log("Restart button clicked!");
   cellRef.forEach((cell) => {
@@ -150,34 +168,25 @@ restartButton.addEventListener("click", function resetCells() {
   gameWon = false;
 });
 
-aiBotButton.addEventListener("click", () => {
-  gameBoard.style.display = "flex";
-  enableButtons();
-  if (botActive) {
-    deactivateBot();
-  } else {
-    activateBot();
-    aiBotButton.style.backgroundColor = "green";
-    twoPlayersButton.style.background = "white";
-    newGameForm.style.display = "none";
-    playerXName.textContent = "user";
-    playerOName.textContent = "bot";
-  }
-});
-
 twoPlayersButton.addEventListener("click", () => {
   newGameForm.style.display = "block";
+  gameBoard.style.display = "none";
+  playerXName.style.display = "none";
+  playerOName.style.display = "none";
+  restartButton.style.display = "block";
   deactivateBot();
   twoPlayersButton.style.backgroundColor = "green";
-  aiBotButton.style.backgroundColor = "white";
+  aiBotButton.style.backgroundColor = "grey";
 });
 
 startButton.addEventListener("click", function startGame(event) {
   event.preventDefault();
+  playerXName.style.display = "block";
+  playerOName.style.display = "block";
   const nameX = playerX.value || "Player X";
   playerNameX = nameX;
   const nameO = playerO.value || "Player O";
-  playerNameO = playerO;
+  playerNameO = nameO;
   playerXName.textContent = nameX;
   playerOName.textContent = nameO;
   console.log(nameX);

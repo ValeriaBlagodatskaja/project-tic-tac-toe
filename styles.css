@@ -1,12 +1,19 @@
+body {
+  max-height: 100vh;
+}
+
 button {
   border: 1px solid #000;
 }
 
 .gameBoard {
-  display: flex;
   flex-wrap: wrap;
   width: 400px;
-  margin: 80px auto;
+}
+
+.board {
+  display: flex;
+  justify-content: center;
 }
 
 .cell {
@@ -53,7 +60,6 @@ button {
 
 #newGameForm input[type="text"] {
   padding: 8px;
-  margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
@@ -61,6 +67,13 @@ button {
 
 p {
   font-size: 18px;
+}
+
+#newGameForm {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 12px;
 }
 
 #newGameForm button[type="submit"] {
@@ -77,4 +90,23 @@ p {
 
 #newGameForm button[type="submit"]:hover {
   background-color: green;
+}
+
+.restartButton {
+  width: 136px;
+  height: 30px;
+  border: none;
+  letter-spacing: 2px;
+  padding: 6px;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: lightgreen;
+  cursor: pointer;
+  margin-top: 40px;
+}
+
+span {
+  margin-top: 40px;
+  float: right;
+  font-size: 16px;
 }

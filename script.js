@@ -133,6 +133,10 @@ aiBotButton.addEventListener("click", () => {
   playerXName.style.display = "block";
   playerOName.style.display = "block";
   enableButtons();
+  resetCells();
+  gameWon = false;
+  xTurn = true;
+  resultSpan.textContent = "";
   if (botActive) {
     deactivateBot();
   } else {
@@ -140,14 +144,11 @@ aiBotButton.addEventListener("click", () => {
     aiBotButton.style.backgroundColor = "green";
     twoPlayersButton.style.background = "grey";
     newGameForm.style.display = "none";
-    playerXName.textContent = "user";
-    playerOName.textContent = "bot";
+    playerNameX = "Human";
+    playerNameO = "Bot";
+    playerXName.textContent = playerNameX;
+    playerOName.textContent = playerNameO;
   }
-  cellRef.forEach((cell) => {
-    cell.innerText = "";
-    cell.disabled = false;
-  });
-  resultSpan.textContent = "";
 });
 
 function enableButtons() {
@@ -156,9 +157,15 @@ function enableButtons() {
   });
 }
 
+function resetCells() {
+  cellRef.forEach((cell) => {
+    cell.innerText = "";
+    cell.disabled = false;
+  });
+}
 window.onload = enableButtons;
+
 restartButton.addEventListener("click", function resetCells() {
-  console.log("Restart button clicked!");
   cellRef.forEach((cell) => {
     cell.innerText = "";
     cell.disabled = false;
@@ -169,7 +176,7 @@ restartButton.addEventListener("click", function resetCells() {
 });
 
 twoPlayersButton.addEventListener("click", () => {
-  newGameForm.style.display = "block";
+  newGameForm.style.display = "flex";
   gameBoard.style.display = "none";
   playerXName.style.display = "none";
   playerOName.style.display = "none";
@@ -194,4 +201,8 @@ startButton.addEventListener("click", function startGame(event) {
   newGameForm.style.display = "none";
   gameBoard.style.display = "flex";
   enableButtons();
+  resetCells();
+  gameWon = false;
+  xTurn = true;
+  resultSpan.textContent = "";
 });

@@ -100,6 +100,9 @@ function checkWinner() {
       cellRef[a].textContent === cellRef[b].textContent &&
       cellRef[a].textContent === cellRef[c].textContent
     ) {
+      cellRef[a].style.backgroundColor = "#273469";
+      cellRef[b].style.backgroundColor = "#273469";
+      cellRef[c].style.backgroundColor = "#273469";
       gameWon = true;
       return cellRef[a].textContent;
     }
@@ -136,10 +139,6 @@ function botMakeMove() {
 
 cellRef.forEach((element) => {
   element.addEventListener("click", () => {
-    console.log("gameWon", gameWon);
-    console.log("botActive", botActive);
-    console.log("xTurn", xTurn);
-
     if (!element.textContent && !gameWon) {
       if (!gameWon && botActive && !xTurn) {
         botMakeMove();
@@ -166,8 +165,8 @@ aiBotButton.addEventListener("click", () => {
     deactivateBot();
   } else {
     activateBot();
-    aiBotButton.style.backgroundColor = "green";
-    twoPlayersButton.style.background = "grey";
+    aiBotButton.style.backgroundColor = "lightgreen";
+    twoPlayersButton.style.background = "#D4C1EC";
     newGameForm.style.display = "none";
     playerNameX = "Human" + " " + "[X]";
     playerNameO = "Bot" + " " + "[O]";
@@ -186,6 +185,7 @@ function resetCells() {
   cellRef.forEach((cell) => {
     cell.innerText = "";
     cell.disabled = false;
+    cell.style.backgroundColor = "#777da7";
   });
 }
 window.onload = enableButtons;
@@ -194,6 +194,7 @@ restartButton.addEventListener("click", function resetCells() {
   cellRef.forEach((cell) => {
     cell.innerText = "";
     cell.disabled = false;
+    cell.style.backgroundColor = "#777da7";
   });
   resultSpan.textContent = "";
   xTurn = true;
@@ -209,8 +210,8 @@ twoPlayersButton.addEventListener("click", () => {
   resetScores();
   document.getElementById("scoreboard").style.display = "none";
   deactivateBot();
-  twoPlayersButton.style.backgroundColor = "green";
-  aiBotButton.style.backgroundColor = "grey";
+  twoPlayersButton.style.backgroundColor = "lightgreen";
+  aiBotButton.style.backgroundColor = "#D4C1EC";
 });
 
 startButton.addEventListener("click", function startGame(event) {

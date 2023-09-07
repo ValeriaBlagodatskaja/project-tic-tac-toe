@@ -1,11 +1,21 @@
 body {
   max-height: 100vh;
+  font-family: "Righteous";
+  background-color: #777da7;
+  color: #fef9ff;
 }
 
-button {
-  border: 1px solid #000;
+* {
+  box-sizing: border-box;
 }
 
+:root {
+  --green: #8fd694;
+}
+
+.tic {
+  font-family: "Righteous", cursive;
+}
 .gameBoard {
   flex-wrap: wrap;
   width: 400px;
@@ -20,15 +30,32 @@ button {
   height: 130px;
   width: 130px;
   font-size: 24px;
-  border: 1px solid #000;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  color: var(--green);
+  border: 2px solid var(--green);
+  border-left: none;
+  border-top: none;
+  background-color: #777da7;
+  font-family: "Righteous", cursive;
+  font-size: 56px;
+  font-weight: 600;
+  transition: 200ms transform;
+}
+
+.cell:nth-child(3n) {
+  border-right: none;
+}
+
+.cell:nth-child(6) ~ .cell {
+  border-bottom: none;
 }
 
 .game-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -48,8 +75,9 @@ button {
   padding: 6px;
   border-radius: 4px;
   font-size: 16px;
-  background-color: grey;
+  background-color: #d4c1ec;
   cursor: pointer;
+  font-family: "Righteous";
 }
 
 .choiceButtons {
@@ -63,6 +91,8 @@ button {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+  font-family: "Righteous";
+  cursor: pointer;
 }
 
 p {
@@ -71,7 +101,6 @@ p {
 
 #playerXName,
 #playerOName {
-  margin: 76px 300px;
   font-size: 24px;
 }
 
@@ -84,7 +113,7 @@ p {
 
 #newGameForm button[type="submit"] {
   width: 96px;
-  height: 30px;
+  height: 36px;
   border: none;
   letter-spacing: 2px;
   padding: 6px;
@@ -92,6 +121,7 @@ p {
   font-size: 16px;
   background-color: lightgreen;
   cursor: pointer;
+  font-family: "Righteous";
 }
 
 #newGameForm button[type="submit"]:hover {
@@ -100,7 +130,7 @@ p {
 
 .restartButton {
   width: 136px;
-  height: 30px;
+  height: 36px;
   border: none;
   letter-spacing: 2px;
   padding: 6px;
@@ -109,9 +139,10 @@ p {
   background-color: lightgreen;
   cursor: pointer;
   margin-top: 40px;
+  font-family: "Righteous";
 }
 
-span {
+.result {
   margin-top: 40px;
   float: right;
   font-size: 16px;
@@ -124,5 +155,11 @@ span {
 }
 
 .scoreboard {
-  justify-content: space-between;
+  justify-content: space-around;
+}
+
+.right-score,
+.left-score {
+  font-size: 48px;
+  font-family: "Righteous", cursive;
 }

@@ -69,6 +69,12 @@ p {
   font-size: 18px;
 }
 
+#playerXName,
+#playerOName {
+  margin: 76px 300px;
+  font-size: 24px;
+}
+
 #newGameForm {
   flex-direction: column;
   justify-content: center;
@@ -109,4 +115,14 @@ span {
   margin-top: 40px;
   float: right;
   font-size: 16px;
+}
+
+.restart-result {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.scoreboard {
+  justify-content: space-between;
 }

@@ -10,12 +10,16 @@ const playerO = document.getElementById("playerO");
 const startButton = document.getElementById("startButton");
 const twoPlayersButton = document.querySelector(".twoPlayersButton");
 const aiBotButton = document.querySelector(".aiBotButton");
+const rightScoreElement = document.getElementById("right-score");
+const leftScoreElement = document.getElementById("left-score");
 
 let xTurn = true;
 let gameWon = false;
 let playerNameX = "Player X";
 let playerNameO = "Player O";
 let botActive = false;
+let rightScore = 0;
+let leftScore = 0;
 
 function activateBot() {
   botActive = true;
@@ -23,6 +27,23 @@ function activateBot() {
 
 function deactivateBot() {
   botActive = false;
+}
+
+function updateScores(winner) {
+  if (winner === "X") {
+    leftScore++;
+  } else if (winner === "O") {
+    rightScore++;
+  }
+  rightScoreElement.textContent = `${rightScore}`;
+  leftScoreElement.textContent = `${leftScore}`;
+}
+
+function resetScores() {
+  rightScore = 0;
+  leftScore = 0;
+  leftScoreElement.textContent = "0";
+  rightScoreElement.textContent = "0";
 }
 
 function handlePlayerMove(element) {
@@ -42,8 +63,7 @@ function handlePlayerMove(element) {
       } else {
         const winnerName = winner === "X" ? playerNameX : playerNameO;
         resultSpan.textContent = `${winnerName} wins!`;
-        console.log(winnerName);
-        console.log(winner);
+        updateScores(winner);
       }
       cellRef.forEach((cell) => {
         cell.disabled = true;
@@ -101,6 +121,9 @@ function botMakeMove() {
       resultSpan.textContent = "It's a draw!";
     } else if (winner === "O") {
       resultSpan.textContent = "Bot wins!";
+      updateScores(winner);
+    } else {
+      resultSpan.textContent = "Human wins!";
     }
     cellRef.forEach((cell) => {
       cell.disabled = true;
@@ -132,6 +155,8 @@ aiBotButton.addEventListener("click", () => {
   restartButton.style.display = "block";
   playerXName.style.display = "block";
   playerOName.style.display = "block";
+  resetScores();
+  document.getElementById("scoreboard").style.display = "flex";
   enableButtons();
   resetCells();
   gameWon = false;
@@ -144,8 +169,8 @@ aiBotButton.addEventListener("click", () => {
     aiBotButton.style.backgroundColor = "green";
     twoPlayersButton.style.background = "grey";
     newGameForm.style.display = "none";
-    playerNameX = "Human";
-    playerNameO = "Bot";
+    playerNameX = "Human" + " " + "[X]";
+    playerNameO = "Bot" + " " + "[O]";
     playerXName.textContent = playerNameX;
     playerOName.textContent = playerNameO;
   }
@@ -181,6 +206,8 @@ twoPlayersButton.addEventListener("click", () => {
   playerXName.style.display = "none";
   playerOName.style.display = "none";
   restartButton.style.display = "block";
+  resetScores();
+  document.getElementById("scoreboard").style.display = "none";
   deactivateBot();
   twoPlayersButton.style.backgroundColor = "green";
   aiBotButton.style.backgroundColor = "grey";
@@ -194,10 +221,10 @@ startButton.addEventListener("click", function startGame(event) {
   playerNameX = nameX;
   const nameO = playerO.value || "Player O";
   playerNameO = nameO;
-  playerXName.textContent = nameX;
-  playerOName.textContent = nameO;
-  console.log(nameX);
-  console.log(playerXName);
+  playerXName.textContent = nameX + " " + "[X]";
+  playerOName.textContent = nameO + " " + "[O]";
+  resetScores();
+  document.getElementById("scoreboard").style.display = "flex";
   newGameForm.style.display = "none";
   gameBoard.style.display = "flex";
   enableButtons();

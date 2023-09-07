@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tic Tac Toe</title>
+    <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <h1 class="tic">Tic Tac Toe</h1>
+    <h1 class="tic">Tic-Tac-Toe</h1>
     <div class="choiceButtons">
       <button class="twoPlayersButton">2 players</button>
       <button class="aiBotButton">AI Bot</button>
@@ -17,6 +17,10 @@
     <div class="game-info">
       <p id="playerXName"></p>
       <p id="playerOName"></p>
+    </div>
+    <div class="scoreboard" id="scoreboard" style="display: none">
+      <span id="left-score">0</span>
+      <span id="right-score">0</span>
     </div>
     <form class="form-container" id="newGameForm" style="display: none">
       <label for="playerX">
@@ -43,10 +47,16 @@
         <button class="cell" id="7"></button>
         <button class="cell" id="8"></button>
         <br />
-        <button class="restartButton" id="restartButton" style="display: none">
-          New game
-        </button>
-        <span id="result"></span>
+        <div class="restart-result">
+          <button
+            class="restartButton"
+            id="restartButton"
+            style="display: none"
+          >
+            New game
+          </button>
+          <span id="result"></span>
+        </div>
       </div>
     </div>
   </body>
